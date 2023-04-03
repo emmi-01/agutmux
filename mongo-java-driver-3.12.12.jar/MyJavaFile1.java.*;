@@ -1,0 +1,32 @@
+import java.sql.*;
+
+public class MyJDBCFile {
+
+    public static void main(String[] args) {
+
+        // Set up the connection string
+        String username = "test";
+        String password = "test";
+        String cluster = "cluster0.dnxuorp.mongodb.net";
+        String databaseName = "tour_booking_db";
+        String uri = String.format("jdbc:mongodb+srv://%s:%s@%s/%s?retryWrites=true&w=majority", username, password, cluster, databaseName);
+
+        // Connect to the database
+        try (Connection conn = DriverManager.getConnection(uri)) {
+
+            // Query the tour bookings collection
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tour_bookings");
+
+            // Iterate through results and print name and mobile
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String mobile = rs.getString("tel");
+                System.out.printf("Name: %s, Mobile: %s%n", name, mobile);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("SQLException: " + e.getMessage());
+        }
+    }
+}

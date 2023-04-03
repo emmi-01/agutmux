@@ -1,0 +1,1 @@
+{"id":"e63597df-d375-49c9-852b-0ec85d150317","space":40308,"runtime":"python3.9","name":"dash","path":"c8etlm","project":"c0l2bgqm","account":"144798365827","region":"ap-southeast-1","deps":["flask","pymongo","flask_cors"],"envs":null,"public":false,"log_level":"off","cron":""}

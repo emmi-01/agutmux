@@ -1,0 +1,4 @@
+https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/3.12.12/mongo-java-driver-3.12.12.jar
+ java -cp .:lib/mongo-java-driver-3.12.12.jar MyJavaFile
+javac -cp .:lib/mongo-java-driver-3.12.12.jar  MyJavaFile.java
+

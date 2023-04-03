@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Policy</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+    <style>
+      /* CSS styles */
+      h1 {
+        text-align: center;
+        font-size: 36px;
+      }
+      .tours {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .tour {
+        width: 300px;
+        height: 450px;
+        margin: 20px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px gray;
+        overflow: hidden;
+        text-align: center;
+      }
+      .tour img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .tour h2 {
+        font-size: 24px;
+        margin: 10px 0;
+      }
+      .tour p {
+        font-size: 18px;
+        margin: 0 10px 10px;
+      }
+      .tour button {
+        padding: 10px 20px;
+        background-color: orange;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML Content -->
+    <h1>Our Tours</h1>
+    <div class="tours">
+      <div class="tour">
+        <img src="https://via.placeholder.com/300x200" alt="Tour Image">
+        <h2>Shimla</h2>
+        <p>Tour description goes here</p>
+        <button>Book Tour</button>
+      </div>
+      <!-- Add more tours as needed -->
+    </div>
+
+      <div class="tours">
+      <div class="tour">
+        <img src="https://via.placeholder.com/300x200" alt="Tour Image">
+        <h2>Kashmir</h2>
+        <p>Tour description goes here</p>
+        <button>Book Tour</button>
+      </div>
+      <!-- Add more tours as needed -->
+    </div>
+
+      <div class="tours">
+      <div class="tour">
+        <img src="https://via.placeholder.com/300x200" alt="Tour Image">
+        <h2>Leh Ladakh Tour</h2>
+        <p>Tour description goes here</p>
+        <button>Book Tour</button>
+      </div>
+      <!-- Add more tours as needed -->
+    </div>
+    <!-- JavaScript to show/hide tour details -->
+    <script>
+ const tours = document.querySelectorAll(".tour");
+tours.forEach(tour => {
+  const button = tour.querySelector("button");
+  button.addEventListener("click", function() {
+    const form = `
+      <form>
+        <input type="text" placeholder="Name" required>
+        <input type="tel" placeholder="Mobile Number" required>
+        <br>
+        <button id="submit-form">Submit</button>
+      </form>
+    `;
+    tour.innerHTML += form;
+    button.style.display = "none";
+
+    const submitFormButton = document.querySelector("#submit-form");
+    submitFormButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      const name = tour.querySelector('input[type="text"]').value;
+      const tel = tour.querySelector('input[type="tel"]').value;
+      const data = { name, tel };
+      fetch("https://c8etlm.deta.dev/book-tour", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    });
+  });
+});
+
+
+    </script>
+    <footer>
+  <div class="address">
+    <h3>For Address</h3>
+    <p>Swastik Tours 'N' Travels, Near Victory Tunnel, Circular Road, Shimla - 171003 (H.P)</p>
+  </div>
+  <div class="contact-info">
+    <h3>Contact Info</h3>
+    <p>Call Us: +91 - 80910 - 70806</p>
+    <p>Email: info@swastiktourntravels.com</p>
+  </div>
+  <div class="social-media">
+    <h3>Social Media</h3>
+    <ul>
+      <li><a href="#">Pinterest</a></li>
+      <li><a href="#">Swastik Tour and Travels</a></li>
+    </ul>
+  </div>
+  <div class="tour-destinations">
+    <h3>Tour Destinations</h3>
+    <ol>
+      <li>Leh Ladakh Tour</li>
+      <li>Kashmir</li>
+      <li>Shimla</li>
+    </ol>
+  </div>
+</footer>
+
+  </body>
+</html>
