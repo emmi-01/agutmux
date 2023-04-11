@@ -7,7 +7,7 @@ app.secret_key = 'your-secret-key'
 
 # Initialize empty book database
 db_file = 'dblocal.json'
-default_categories = ['maths', 'chem', 'phy']
+default_categories = ['Hospitality', 'Civil', 'Chemistry', 'Physics', 'Dictionaries', 'Mechanical', 'Fashion Design', 'Misc', 'Law', 'Ele&Electronics']
 if not os.path.isfile(db_file):
     with open(db_file, 'w') as f:
         json.dump({cat: [] for cat in default_categories}, f)
